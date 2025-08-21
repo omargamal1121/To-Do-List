@@ -1,0 +1,511 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav {
+    background: linear-gradient(to left, #2c3e50, #4ca1af);
+    color:white
+    
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    line-height: 1.6;
+    height: 100vh;
+
+    background-image: url("../elena-mozhvilo-dCC7LtjU1WA-unsplash.jpg");
+
+}
+
+
+a {
+    text-decoration: none;
+ 
+}
+    a:hover {
+        color: black;
+    }
+.container {
+    margin: 0 auto;
+    padding-top:20px
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 20px;
+   
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4  {
+    font-size: 1.25rem;
+}
+
+h6
+{
+    color:black;
+}
+/* Forms */
+.Create {
+    margin-bottom: 20px;
+}
+
+    .Create form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .Create input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 100px;
+        width: 100%;
+    }
+.progress-container {
+    width: 80%;
+    position:absolute;
+    bottom:0px;
+    left:20px;
+    max-width: 300px;
+    margin: 10px 0;
+
+}
+
+    .progress-container.small {
+        max-width: 200px;
+    }
+
+.progress-label {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 15px;
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #2ac52a;
+    border-radius: 7px;
+    transition: width 0.3s ease-in-out;
+}
+.AllCard {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+
+}
+.bg-light.bg-gradient.p-5.w-50.border
+{
+    border-radius:50px;
+}
+.bg-light.w-50.p-4 {
+    border-radius: 50px;
+}
+
+.Categorycard {
+    background: linear-gradient(to top, #165aa1, #ffffff);
+    border: 1px solid #DDDDDD;
+    border-radius: 10px;
+    padding: 20px;
+    height: 300px;
+    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+@keyframes test
+{
+    from {
+        background: linear-gradient(to top, #165aa1, #ffffff);
+    }
+    to {
+        background: linear-gradient(to top, black, black);
+    }
+}
+    .Categorycard:not(:hover)
+    {
+        opacity:0.6;
+    }
+.Categorycard:hover {
+    transform: scale(1.1);
+    background-color: #E9F5F8;
+    box-shadow: 0 8px 16px white;
+}
+
+
+
+.Categorycard h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+    .Categorycard h6 {
+        font-size: 14px;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    .Categorycard hr {
+        border: 0;
+        border-top: 1px solid #6C757D;
+        margin: 10px 0;
+        color: black;
+    }
+hr {
+    height: 4px;
+    background-color: black
+}
+
+
+.SubCategory {
+    overflow: auto;
+    
+    display:flex;
+    flex-direction:column;
+}
+
+.NameItem {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .NameItem i {
+        cursor: pointer;
+        color :red;
+        font-size: 20px;
+    }
+
+.buttons {
+    position: absolute;  
+    bottom: 10px; 
+    left: 10px;
+    right: 10px; 
+    display: flex;
+    justify-content: space-between;
+    margin-top:40px
+}
+
+
+
+
+
+/* Task Details */
+.task-details p {
+    margin-bottom: 0.5rem;
+}
+
+.bool {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+    .bool a {
+        border: 3px solid black;
+        margin: 0;
+    }
+
+    .bool p {
+        margin-top: 10px;
+        margin-right: 5px;
+    }
+
+    .bool i {
+        font-size: 20px;
+    }
+
+.fa-solid.fa-circle-xmark {
+    color: rgba(225, 0, 0, 1);
+}
+
+.fa-regular.fa-circle-check {
+    color: green;
+}
+
+
+
+
+.card-body {
+    position: relative;
+    height: auto;
+    padding-bottom: 50px;
+}
+
+.card-body-Category {
+    max-height:80px;
+    display:block;
+    overflow: auto;
+    margin:0;
+}
+
+.card-body-lists {
+    position: relative;
+    height: auto;
+    color: black;
+}
+
+    .card-body-lists a {
+        color: black;
+    }
+
+    .card-body-lists:hover {
+        text-decoration: none;
+    }
+
+.d-flex.align-items-center.mt-3 {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    width: 100%;
+}
+
+
+
+.DescriptionContent {
+    max-height: 60px;
+    overflow: auto;
+    position: relative;
+}
+
+.Tasksdiv {
+    max-height: 100px;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .AllCard {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .Categorycard {
+        padding: 15px;
+    }
+
+    .Create input[type="text"] {
+        font-size: 14px;
+    }
+
+    .bool {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        .bool a {
+            margin-top: 10px;
+        }
+}
+
+@media (max-width: 480px) {
+    .AllCard {
+        grid-template-columns: 1fr;
+    }
+
+    .Create input[type="text"] {
+        font-size: 12px;
+    }
+
+    .bool {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        .bool a {
+            margin-top: 10px;
+        }
+}
+
+
+/* Headings */
+
+
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.task-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .task-card:hover {
+        transform: translateY(-5px);
+    }
+
+
+
+    .card-content h5 {
+        font-size: 1.25rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .card-content h6 {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .card-content p {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+.action-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    margin: 40px 0;
+}
+
+    .empty-state h3 {
+        font-size: 1.5rem;
+        color: #777;
+    }
+
+    .empty-state p {
+        font-size: 1rem;
+        color: #aaa;
+    }
+
+/* Alerts */
+.alert {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e7f3fe;
+    border-left: 5px solid #2196f3;
+    color: #31708f;
+}
+
+/* Back Button */
+.back-button {
+    margin-top: 20px;}
+.Status
+{
+    display:flex;
+    justify-content:space-between
+}
+.Status p
+{
+    padding:0;
+    margin:0;
+    text-align:center;
+}
+
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+/* Main Container Styles */
+.main {
+    min-height: 100vh;
+    padding: 2rem;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+}
+
+/* Create Category Input */
+.Namefield {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: border-color 0.3s ease;
+}
+
+.Namefield:focus {
+    outline: none;
+    border-color: #4ca1af;
+    box-shadow: 0 0 0 3px rgba(76, 161, 175, 0.2);
+}
+
+/* Progress Bar Styles */
+.progress-container {
+    margin-top: 1rem;
+}
+
+.progress-label {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+/* Empty State */
+.text-light {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}

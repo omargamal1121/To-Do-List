@@ -1,0 +1,130 @@
+﻿@model IEnumerable<To_Do_List.Areas.UserArea.Models.MainCategory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="main vh-91 p-3 ">
+    <h1 class=" text-center text-light">Categoires</h1>
+<hr />
+  
+
+<div class="Create">
+    <form asp-action="Create">
+
+        <input name="categoryName" class="Namefield"
+        value="@(TempData["name"] ?? "")" type="text"
+        placeholder="Create Category" />
+    </form>
+</div>
+@if (Model is not null && Model.Any())
+{
+    <div class="AllCard">
+        @foreach (var c in Model)
+        {
+            <div class="Categorycard">
+                <div class="NameItem" id="NameItem">
+                    <h3>@c.Name</h3>
+                    <a asp-action="Delete" asp-route-id="@c.Id"><i class="fa-solid fa-trash"></i></a>
+                </div>
+                        <hr/>
+                <h6>Created Time:@c.CreatTime</h6>
+                <hr />
+                        <h3>Lists</h3>
+                <a asp-action="Lists" asp-route-categoryId="@c.Id" class="card-body-Category">
+                    <div class="SubCategory">
+                        @if (c.SubCategory is null || c.SubCategory.Count == 0)
+                        {
+                            <h6>No Lists :(</h6>
+                        }
+                        else
+                        {
+                         
+                            @foreach (var sc in c.SubCategory)
+                            {
+                                int subCompleted = sc.Tasks.Count(t => t.IsComplete);
+                                int subTotal = sc.Tasks.Count();
+                                <h6>@sc.Name: (@subCompleted/@subTotal)</h6>
+                            }
+                        }
+
+                    </div>
+                </a>
+                <hr />
+         
+                @if (c.SubCategory is not null&& c.SubCategory.Count != 0)
+                {
+                    int totalTasks = c.SubCategory.Sum(sc => sc.Tasks.Count);
+                    int completedTasks = c.SubCategory.Sum(sc => sc.Tasks.Count(t => t.IsComplete));
+                    <div class="progress-container">
+                        <div class="progress-label ">Tasks Progress:</div>
+                        <div class="progress-bar">
+                                @if (totalTasks > 0 && completedTasks * 100 / totalTasks < 25)
+                                {
+                                    <style>
+                                        .progress-bar-fill
+                                        {
+                                            background-color: #e72e2e;
+                                        }
+                                    </style>
+
+                                }
+                                else if (totalTasks > 0 && (completedTasks * 100 / totalTasks >= 25 && completedTasks * 100 / totalTasks < 50))
+                                {
+                                    <style>
+                                        .progress-bar-fill {
+                                            background-color: #c4e123;
+                                        }
+                                    </style>
+
+                                }
+
+                            <div class="progress-bar-fill" style="width: @(totalTasks > 0 ? completedTasks * 100 / totalTasks : 0)%;"></div>
+                        </div>
+        
+                    </div>
+
+                }
+            </div>
+        }
+    </div>
+}
+else
+{
+        <h1 class="text-light">You Don't Have Any Plans 😢</h1>
+}
+</div>
+<div>
+    @if (TempData["message"] is not null)
+    {
+        <script type="text/javascript">
+            toastr.success('','@TempData["message"]')
+        </script>
+    }
+</div>
+@if (TempData["mess"] is not null)
+{
+    if (TempData["mess"].Equals("Invalid category name"))
+    {
+
+        <script type="text/javascript">
+            toastr.error('','Must Name Between 5 and 20')
+        </script>
+    }
+
+
+
+    else
+    {
+        <script type="text/javascript">
+            toastr.success('','@TempData["mess"]')
+        </script>
+    }
+}
+
+                        <style>
+                            body
+                            {
+        background: linear-gradient(to left, #2c3e50, #4ca1af);
+                            }
+                        </style>

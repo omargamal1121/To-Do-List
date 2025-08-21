@@ -1,0 +1,94 @@
+﻿@model To_Do_List.Areas.UserArea.Models.Tasks
+
+@{
+    ViewData["Title"] = "CreateTask";
+}
+
+<div class="container p-0  d-flex flex-column justify-content-center  gb-ligth align-items-center ">
+
+    <form class="bg-light bg-gradient p-5 w-50 border" id="account" method="post">
+      @if(Model is not null){
+        <input hidden asp-for="Id" value="@Model.Id" />}
+        <h1 class="h3 pb-3 text-primary">
+            <i class="fas fa-lock me-2"></i>
+            Create Ur Task
+        </h1>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+        <div class="form-group mb-3">
+            <label asp-for="Name" class="form-label">Task Name</label>
+            <input asp-for="Name" class="form-control" placeholder="Enter task name" required />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="StartTime" class="form-label">Start Time</label>
+            <input asp-for="StartTime" class="form-control" type="datetime-local" required />
+            <span asp-validation-for="StartTime" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="EndTime" class="form-label">End Time</label>
+            <input asp-for="EndTime" class="form-control" type="datetime-local" required />
+            <span asp-validation-for="EndTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Priority" class="form-label">Priority</label>
+            <select asp-for="Priority" asp-items="@ViewData["items"] as SelectList" class="form-control" required>
+                <option value="">Select Priority</option>
+            </select>
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-4">
+            <label asp-for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter task description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        @if(Model is  null || Model.Id==-1){
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Create Task</button>
+        </div>}
+        else
+        {
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Update Task</button>
+            </div>
+        }
+
+    </form>
+
+</div>
+<div class="">
+    <a asp-action="Tasks" asp-route-subCategoryId="@ViewBag.subCategoryId" class="btn btn-primary mb-3">Back to Tasks</a>
+</div>
+
+
+<style>
+    body {
+        background: linear-gradient(to left, #2c3e50, #4ca1af);}
+
+
+
+    html, body {
+       
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .container {
+        max-width: 100vw; 
+       
+    }
+
+    body {
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    AllCard, .Categorycard {
+        max-width: 100%;
+        overflow: hidden;
+    }
+</style>

@@ -1,0 +1,123 @@
+﻿@using To_Do_List.Areas.UserArea.Models
+@using To_Do_List.Areas.UserArea.Repository
+@inject ISubCategoryRepository _SubCategoryRepository
+@model IEnumerable<Tasks>
+@{
+    ViewData["Title"] = "All Tasks";
+}
+
+<div class="container">
+    <div class="d-flex mb-4 justify-content-center">
+
+        <form asp-action="ChangeNameOfSubCategry" asp-route-SubCategoryId="@ViewBag.SubCategoryId">
+            <input name="SubCategoryName" type="text" class=" text-li border-0 form-control rounded-2 bg-transparent text-center fs-3 text-light " id="floatingInputValue" value="@_SubCategoryRepository.GetSubcategoryName(ViewBag.SubCategoryId)">
+        </form>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="AllCard">
+            @foreach (var task in Model)
+            {
+                <div class="Categorycard">
+                    <div class="">
+                        
+                        <h4>@task.Name</h4>
+                        <hr />
+                        <h6>Created: @task.CreatTime.ToString("MMM dd, yyyy hh:mm tt")</h6>
+                        <hr />
+                        <p><strong>Start Time:</strong> @task.StartTime.ToString("MMM dd, hh:mm tt")</p>
+                        <p><strong>End Time:</strong> @task.EndTime.ToString("MMM dd,  hh:mm tt")</p>
+                        <p><strong>Priority:</strong> @task.Priority</p>
+
+                        @if (DateTime.Now > task.EndTime)
+                        {
+                            <p class="p-2" ><strong>Status:</strong> Must be Incomplete</p>
+                        }
+                        else
+                        {
+                            if (@task.IsComplete)
+                            {
+                                <div class="d-flex justify-content-between">
+                                    <p class="pt-1"><strong>Status:</strong>  <a href="@Url.Action("CompleteTask", "User", new { taskid = task.Id })">✅</a>  </p>
+                                   
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="d-flex justify-content-between">
+                                    <p class="pt-1"><strong>Status:</strong><a href="@Url.Action("CompleteTask", "User", new { taskid = task.Id })">❌</a></p>
+                                  
+                                </div>
+                             
+                            }
+                        }
+
+                        <p class="Description mb-2"><strong>Description:</strong> @task.Description</p>
+
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("DeleteTask", "User", new { id = task.Id })" class="btn btn-danger">Delete</a>
+                            <a href="@Url.Action("CreateTask", "User", new {subCategoryId= task.SubCategoryId ,taskid = task.Id })" class="btn btn-primary">Update</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-light">
+            <h3>You don't have any tasks yet. 😢</h3>
+            <p>Click the "Create New Task" button to get started!</p>
+        </div>
+    }
+
+    @if (TempData["mess"] is not null)
+    {
+        if (TempData["mess"].Equals("Updated")){
+        <script type="text/javascript">
+            toastr.success('','Updated :)')
+        </script>}
+        else
+        {
+            <script type="text/javascript">
+                toastr.error('','@TempData["mess"]')
+            </script>
+        }
+        }
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="@Url.Action("Lists", "User", new { categoryId = ViewBag.CategoryId })" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </a>
+        <a href="@Url.Action("CreateTask", "User", new { area = "UserArea", SubCategoryId = ViewBag.SubCategoryId ,taskid=-1 })" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Create New Task
+        </a>
+    </div>
+</div>
+
+<style>
+
+
+    .Description
+    {
+        overflow:auto;
+        height:45px;
+    }
+    body {
+        background: linear-gradient(to left, #2c3e50, #4ca1af);}
+
+    .task-card.m-2
+    {
+        background: linear-gradient(to top, #165aa1, #ffffff);
+      
+    }
+
+    .Categorycard
+    {
+       
+        height:390px;
+    }
+  
+</style>
